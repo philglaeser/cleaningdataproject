@@ -1,27 +1,18 @@
 # Code Book for Data in philglaeser/cleaningdataproject repository
 
+## Overview
+The tidy datasets described herein originates from data which is split across 8 data sets.
+The original data resulted from an experiment using motion sensors in a smartphone
+to measure movements of 30 subjects over 6 activities.
 
-3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md.
+The first goal is to extract only certain types of data measurements, mean and standard deviation, and combine
+both the test and trial subjects into one table.  This table is named "CombinedMeanandStd.txt".
 
-
-
-
-
-
-
-
-
-This repository contains the code to process 
-
-
-The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
-
-## The following code (script) reads in 8 files containing data 
-## associated with an experiment using the Acceleration and Gyroscope capabilities
-## of smart phone to measure movements of 30 subjects over 6 activities. 
-
+The second goal is to summarize this data by taking the mean of the selected measurements grouped by the subject and the activity.
+This table is named "MeansOfSelectedVariablesBySubjectAndActivity.txt".
 
 ## The Process
+
 Processing the data requires the execution of 1 script,  run_analysis.R
 It performs the following steps on the origional data.
 
@@ -29,21 +20,23 @@ It performs the following steps on the origional data.
 * Read 8 tables into 8 dataframes
 * Note, table are assumed to be in the current working directory
 * Name the column with the participant id numbers "Subject"
+
 ### Step 2
 * Create a True/False column in the features data to select the mean and standard deviation columns.
 * Note the meanfreq columns are not selected for this data set.
 * 66 columns with meand and std data are selected. 
+
 ###Step 3 
 * Use the data in the activities table to create a column that associates the proper labels to the activity number in the yTest and yTrain tables
 * The column with the descriptions are now labeled "Activities"
+
 ### Step 4 
-## Subset the features table to only those we want to keep
-## Create a vector "ColKeep" which is the list of column numbers to keep 
-## Create a vector "ColDisc" with the labels of those columns 
-##   by using make.name to insure legitimate column names
-## Subset the xTest andxTrain data to only the columns we want
-## Create a vector "existnames" with the existing names of the xT... tables
-## Rename the columns by matching existing to the desired names
+* Subset the features table to only those we want to keep
+* Create a vector "ColKeep" which is the list of column numbers to keep 
+* Create a vector "ColDisc" with the labels of those columns by using make.name to insure legitimate column names
+* Subset the xTest andxTrain data to only the columns we want
+* Create a vector "existnames" with the existing names of the xT... tables
+* Rename the columns by matching existing to the desired names
 
 fs <- subset(features, MS == TRUE)
 colKeep <- fs$V1
@@ -149,7 +142,7 @@ The complete list of variables of each feature vector is available in 'features.
 
 
 
-### MeansOfSelectedVariablesBySubjectAndActivity.txt
+### Variable Names
 
 This dataset contains the averages of the means and standard deviations for the data in the ??? data set.
 There are 30 subjects in the study, each with 6 activities, for a total of 180 rows. 

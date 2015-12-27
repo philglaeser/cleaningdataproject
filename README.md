@@ -4,12 +4,13 @@
 
 * 'README.md', This file
 * 'CodeBook.md, The description of the contents and process to create the datasets included in this repository 
-* 'run_analysis.R, An R script which produces the dataset included in this directory from the original data
-* 
-* 
+* 'run_analysis.R, An R script which produces the datasets included in this directory from the original data
+* 'CombinedMeanandStd.txt', A data file with the selected variables from the original data reformated into one tidy data set. 
+* "MeansOfSelectedVariablesBySubjectAndActivity.txt", The means of each of the selected variables grouped by subject and activity.
 
 ### Process Execution
 The entire process is acomplished by running the script (code) contained in run_analysis.R.
+The processing steps are described in the file CodeBook.md
 The code assumes that the following original data files are contained in the same directory as the script.
 
 * 'features.txt': List of all features.
