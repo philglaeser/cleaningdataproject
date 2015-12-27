@@ -1,64 +1,53 @@
-# cleaningdataproject
+## Combining and Summarizing the Human Activity Recognition Using Smartphones Dataset
+
+### This repository contains the following files:
+
+* 'README.md', This file
+* 'CodeBook.md, The description of the contents and process to create the datasets included in this repository 
+* 'run_analysis.R, An R script which produces the dataset included in this directory from the original data
+* 
+* 
 
 
+### Process Execution
+=========================================
+The entire process is acomplished by running the script (code) contained in run_analysis.R.
+The code assumes that the following original data files are contained in the same directory as the script.
 
-Feature Selection 
-=================
+* 'features.txt': List of all features.
+* 'activity_labels.txt': Links the class labels with their activity name.
+* 'x_train.txt': Training set.
+* 'y_train.txt': Training labels.
+* 'x_test.txt': Test set.
+* 'y_test.txt': Test labels.
+* 'subject_train.txt': Each row identifies the subject in the training group who performed the activity. 
+* 'subject_test.txt': Each row identifies the subject in the test group who performed the activity. 
 
-The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
-Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+### Acknowlegements
 
-Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+The data processed by this code came from ...
 
-These signals were used to estimate variables of the feature vector for each pattern:  
-'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+==================================================================
+Human Activity Recognition Using Smartphones Dataset
+Version 1.0
+==================================================================
+Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.
+Smartlab - Non Linear Complex Systems Laboratory
+DITEN - Università degli Studi di Genova.
+Via Opera Pia 11A, I-16145, Genoa, Italy.
+activityrecognition@smartlab.ws
+www.smartlab.ws
+==================================================================
 
-tBodyAcc-XYZ (6)
-tGravityAcc-XYZ (6)
-tBodyAccJerk-XYZ (6)
-tBodyGyro-XYZ (6)
-tBodyGyroJerk-XYZ (6)
-tBodyAccMag (2)
-tGravityAccMag (2)
-tBodyAccJerkMag (2)
-tBodyGyroMag (2)
-tBodyGyroJerkMag (2)
-fBodyAcc-XYZ (6)
-fBodyAccJerk-XYZ (6)
-fBodyGyro-XYZ (6)
-fBodyAccMag (2)
-fBodyAccJerkMag (2)
-fBodyGyroMag (2)
-fBodyGyroJerkMag (2)
+For more information about this dataset contact: activityrecognition@smartlab.ws
 
-The set of variables that were estimated from these signals are: 
+License:
+========
+Use of this dataset in publications must be acknowledged by referencing the following publication [1] 
 
-mean(): Mean value
-std(): Standard deviation
-mad(): Median absolute deviation 
-max(): Largest value in array
-min(): Smallest value in array
-sma(): Signal magnitude area
-energy(): Energy measure. Sum of the squares divided by the number of values. 
-iqr(): Interquartile range 
-entropy(): Signal entropy
-arCoeff(): Autorregresion coefficients with Burg order equal to 4
-correlation(): correlation coefficient between two signals
-maxInds(): index of the frequency component with largest magnitude
-meanFreq(): Weighted average of the frequency components to obtain a mean frequency
-skewness(): skewness of the frequency domain signal 
-kurtosis(): kurtosis of the frequency domain signal 
-bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
-angle(): Angle between to vectors.
+[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
 
-Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.
 
-gravityMean
-tBodyAccMean
-tBodyAccJerkMean
-tBodyGyroMean
-tBodyGyroJerkMean
-
-The complete list of variables of each feature vector is available in 'features.txt'
-
+Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
