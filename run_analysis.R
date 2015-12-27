@@ -1,6 +1,7 @@
 ## Getting and Cleaning Data Course Project
 ## Coded by PBG
 
+
 ## The following code (script) reads in 8 files containing data 
 ## associated with an experiment using the Acceleration and Gyroscope capabilities
 ## of smart phone to measure movements of 30 subjects over 6 activities. 
