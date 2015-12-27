@@ -1,15 +1,16 @@
 ## Getting and Cleaning Data Course Project
 ## Coded by PBG
 
-## subject_test.txt contains the indicator of which of the 9 subjects the data is from
-## y_test.txt contains the indicator of which of the 6 activities was being performed
-## X_test.txt contains the 
+## The following code (script) reads in 8 files containing data 
+## associated with an experiment using the Acceleration and Gyroscope capabilities
+## of smart phone to measure movements of 30 subjects over 6 activities. 
 
 require(dplyr)
 
 ## Step 1 
 ## Read 8 tables into 8 dataframes
-## The the one column in SubTest and SubTrian tables to "Subject"
+## Note, table are assumed to be in the current working directory
+## Name the column with the participant id numbers "Subject"
 
 activities <- read.table("activity_labels.txt")
 features <- read.table("features.txt")
