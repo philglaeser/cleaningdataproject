@@ -1,7 +1,7 @@
 # Code Book for Data in philglaeser/cleaningdataproject repository
 
 ## Overview
-The tidy datasets described herein originates from data which is split across 8 data sets.
+The tidy datasets described herein originates from data which is split across 8 datasets.
 The original data resulted from an experiment using motion sensors in a smartphone
 to measure movements of 30 subjects over 6 activities.
 
@@ -13,7 +13,7 @@ This table is named "MeansOfSelectedVariablesBySubjectAndActivity.txt".
 
 ## The Process
 
-Processing the data requires the execution of 1 script,  run_analysis.R
+Processing the data requires the execution of 1 script, run_analysis.R.
 It performs the following steps on the origional data.
 
 ### Step 1 
@@ -24,7 +24,7 @@ It performs the following steps on the origional data.
 ### Step 2
 * Create a True/False column in the features data to select the mean and standard deviation columns.
 * Note the meanfreq columns are not selected for this data set.
-* 66 columns with meand and std data are selected. 
+* 66 columns with mean and std data are selected. 
 
 ###Step 3 
 * Use the data in the activities table to create a column that associates the proper labels to the activity number in the yTest and yTrain tables
@@ -38,116 +38,29 @@ It performs the following steps on the origional data.
 * Create a vector "existnames" with the existing names of the xT... tables
 * Rename the columns by matching existing to the desired names
 
-fs <- subset(features, MS == TRUE)
-colKeep <- fs$V1
-colDisc <- make.names(fs$V2)
-
-xTest <- subset(xTest[,colKeep])
-existnames <- names(xTest)
-names(xTest)[match(existnames,names(xTest))] <- colDisc
-
-xTrain <- subset(xTrain[,colKeep])
-existnames <- names(xTrain)
-names(xTrain)[match(existnames,names(xTrain))] <- colDisc
-
-## Step 5
-## Combine the subject, activity, and numeric observations in one frame
-##  for the train and test data sets
-##  Then, put both data sets together to complete instructions 1 through 4
-##  Additionally, write the data to a text file to store on the repository.
-xTest <- cbind(subTest,Activity=yTest$Activity,xTest)
-xTrain <- cbind(subTrain,Activity=yTrain$Activity,xTrain)
-allData <- rbind(xTest,xTrain)
-write.table(allData, file = "CombinedMeanandStd.txt",row.name=FALSE)
+### Step 5
+* Combine the subject, activity, and numeric observations in one frame for the train and test data sets
+* Then, put both data sets together to complete instructions 1 through 4
+* Additionally, write the data to a text file to store on the repository.
 
 ## Step 6 
-## Find the mean for all variables grouped by Subject and Activity.
-## 30 Subjects x 6 Activities give 180 observations, each with means for 66 variables.
-## Write the result to a file to complete instruction 5
-SumData <- allData %>% group_by(Subject, Activity) %>% summarize_each(funs(mean)) 
-write.table(SumData, file = "MeansOfSelectedVariablesBySubjectAndActivity.txt",row.name=FALSE)
+* Find the mean for all variables grouped by Subject and Activity.
+* 30 Subjects x 6 Activities give 180 observations, each with means for 66 variables.
+* Write the result to a file to complete instruction 5 of the assignment
 
+## Variable Names
+The columns names for both the summary datasets contain herein are the same.
+The 'Subject' column contains the subject id number which ranges from 1 to 30.
+The 'Activity' column contains a character string representing one of the 6 activities performed by the subjects.
 
+The remaining columns were renaimed slightly from the original dataset descriptions of the data in order to make valid column labels.
+This means that '-', '(', and ')' characters were changed to '.'
 
+For the "CombinedMeanandStd.txt" dataset, the observations are the same as the corresponding origional data.
 
+For the "MeansOfSelectedVariablesBySubjectAndActivity.txt", the data is grouped by the subject and the activity with the mean of each group of observations shown. 
 
-
-###
-
-
-
-Feature Selection 
-=================
-
-The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
-
-Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
-
-Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
-
-These signals were used to estimate variables of the feature vector for each pattern:  
-'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
-
-tBodyAcc-XYZ (6)
-tGravityAcc-XYZ (6)
-tBodyAccJerk-XYZ (6)
-tBodyGyro-XYZ (6)
-tBodyGyroJerk-XYZ (6)
-tBodyAccMag (2)
-tGravityAccMag (2)
-tBodyAccJerkMag (2)
-tBodyGyroMag (2)
-tBodyGyroJerkMag (2)
-fBodyAcc-XYZ (6)
-fBodyAccJerk-XYZ (6)
-fBodyGyro-XYZ (6)
-fBodyAccMag (2)
-fBodyAccJerkMag (2)
-fBodyGyroMag (2)
-fBodyGyroJerkMag (2)
-
-The set of variables that were estimated from these signals are: 
-
-mean(): Mean value
-std(): Standard deviation
-mad(): Median absolute deviation 
-max(): Largest value in array
-min(): Smallest value in array
-sma(): Signal magnitude area
-energy(): Energy measure. Sum of the squares divided by the number of values. 
-iqr(): Interquartile range 
-entropy(): Signal entropy
-arCoeff(): Autorregresion coefficients with Burg order equal to 4
-correlation(): correlation coefficient between two signals
-maxInds(): index of the frequency component with largest magnitude
-meanFreq(): Weighted average of the frequency components to obtain a mean frequency
-skewness(): skewness of the frequency domain signal 
-kurtosis(): kurtosis of the frequency domain signal 
-bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
-angle(): Angle between to vectors.
-
-Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
-
-gravityMean
-tBodyAccMean
-tBodyAccJerkMean
-tBodyGyroMean
-tBodyGyroJerkMean
-
-The complete list of variables of each feature vector is available in 'features.txt'
-
-
-
-
-
-
-
-### Variable Names
-
-This dataset contains the averages of the means and standard deviations for the data in the ??? data set.
-There are 30 subjects in the study, each with 6 activities, for a total of 180 rows. 
-
-The following list provides the type of data contained in each column of the file 
+The following list provides the names of data contained in each column of both the datasets. 
 
  1. Subject
  2. Activity
