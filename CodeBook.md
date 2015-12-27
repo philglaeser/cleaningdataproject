@@ -25,26 +25,18 @@ The experiments have been carried out with a group of 30 volunteers within an ag
 Processing the data requires the execution of 1 script,  run_analysis.R
 It performs the following steps on the origional data.
 
-1. Step 1 
+### Step 1 
 * Read 8 tables into 8 dataframes
 * Note, table are assumed to be in the current working directory
 * Name the column with the participant id numbers "Subject"
-
-2. Step 2
+### Step 2
 * Create a True/False column in the features data to select the mean and standard deviation columns.
 * Note the meanfreq columns are not selected for this data set.
 * 66 columns with meand and std data are selected. 
-3. Step 3 
-## Use the data in the activities table to create a column 
-## that associates the proper labels to the activity number
-## in the yTest and yTrain tables
-## The column with the descriptions are now labeled "Activities"
-aNum <- as.character(activities$V1)
-aName <- activities$V2
-yTest$Activity <- factor(yTest$V1, aNum, aName)
-yTrain$Activity <- factor(yTrain$V1, aNum, aName)
-
-## Step 4 
+###Step 3 
+* Use the data in the activities table to create a column that associates the proper labels to the activity number in the yTest and yTrain tables
+* The column with the descriptions are now labeled "Activities"
+### Step 4 
 ## Subset the features table to only those we want to keep
 ## Create a vector "ColKeep" which is the list of column numbers to keep 
 ## Create a vector "ColDisc" with the labels of those columns 
